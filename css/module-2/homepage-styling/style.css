@@ -89,3 +89,50 @@ h2 {
 section h2 + p {
   text-indent: 20px;
 }
+
+a:link {
+  color: #aa6666;
+}
+
+a:visited {
+  color: #5a1f40;
+}
+
+a:focus {
+  color: #844545;
+  text-decoration: none;
+  outline: none;
+}
+
+a:hover {
+  color: #cc9292;
+  text-decoration: none;
+}
+
+a:active {
+  color: #885271;
+  background: #f7cdcd;
+}
+
+a[href*="http"] {
+  background: url('external-link-52.png') no-repeat right 25%;
+  background-size: 1.6rem 1.6rem;
+  padding-right: 1.9rem;
+}
+
+section ul {
+  list-style-type: circle;
+}
+
+aside ul {
+  list-style-type: '# ';
+}
+
+nav ul li {
+  list-style-type: none;
+  padding: 2rem;
+  border: 2px solid #aa6666;
+  margin-top: 0.5rem;
+  text-align: center;
+  background-color: #f7cdcd;
+}
