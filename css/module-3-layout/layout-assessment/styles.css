@@ -46,6 +46,9 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
   }
 
   .feature {
@@ -58,4 +61,24 @@ body {
       align-items: center;
       justify-content: space-between;
     }
+
+    main {
+      display: flex;
+      gap: 20px;
+    }
   }
+
+  article > img {
+    float: left;
+    margin-right: 20px;
+  }
+
+  article {
+    flex: 3;
+  }
+
+  aside {
+    flex: 1;
+  }
+
+  
