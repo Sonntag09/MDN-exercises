@@ -30,7 +30,16 @@
     let para = document.createElement('p');
 
     // Add your code here
-
+    function chooseName() {
+      function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min; //Максимум не включается, минимум включается
+      }
+      let rndInt = getRandomInt(0, names.length);
+      para.textContent = names[rndInt];
+    }
+    chooseName();
     // Don't edit the code below here!
 
     const section = document.querySelector('section');
