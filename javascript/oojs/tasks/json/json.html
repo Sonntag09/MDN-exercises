@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <title>Our cats</title>
+    
+  </head>
+
+  <body>
+
+    <header>
+
+    </header>
+
+    <section>
+
+    </section>
+
+    <script>
+      const section = document.querySelector('section');
+
+      let para1 = document.createElement('p');
+      let para2 = document.createElement('p');
+
+      let motherInfo = 'The mother cats are called ';
+      let kittenInfo;
+
+      /*fetch('sample.json')
+      .then(response => response.text())
+      .then(text => displayCatInfo(text))*/
+
+      let request = new XMLHttpRequest();
+      request.open('GET', 'sample.json');
+      request.responseType = 'json';
+      request.send();
+
+      request.onload = function() {
+        const catObj = request.response;
+        const catStr = JSON.stringify(catObj)
+        displayCatInfo(catStr);
+      }
+
+      function displayCatInfo(catString) {
+        let total = 0;
+        let male = 0;
+        let female = 0;
+
+        const catz = JSON.parse(catString);
+
+        for (let i = 0; i < catz.length; i++) {
+          motherInfo += (i != catz.length - 1) ? ` ${catz[i].name},` : ` and ${catz[i].name}.`;
+          for (let j = 0; j < catz[i].kittens.length; j++) {
+            total++;
+            (catz[i].kittens[j].gender === 'm') ? male++ : female++;            
+          }          
+        }
+
+        kittenInfo = `Kittens in total: ${total}. Males: ${male}. Females: ${female}.`;
+
+      // Don't edit the code below here!
+
+        para1.textContent = motherInfo;
+        para2.textContent = kittenInfo;
+      }
+
+      section.appendChild(para1);
+      section.appendChild(para2);
+    
+    </script>
+  </body>
+</html>
