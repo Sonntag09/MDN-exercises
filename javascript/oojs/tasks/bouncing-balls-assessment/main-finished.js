@@ -23,9 +23,7 @@ function Shape(x, y, velX, velY, exists) {
   this.y = y;
   this.velX = velX;
   this.velY = velY;
-  this.exists = exists;
-  //this.color = color;
-  //this.size = size;
+  this.exists = exists;  
 }
 
 function Ball(x, y, velX, velY, exists, color, size) {
@@ -41,8 +39,10 @@ function EvilCircle(x, y, exists) {
 }
 
 Ball.prototype = Object.create(Shape.prototype);
+Ball.prototype.constructor = Ball;
 
 EvilCircle.prototype = Object.create(Shape.prototype);
+EvilCircle.prototype.constructor = EvilCircle;
 
 // define ball draw method
 
@@ -102,19 +102,19 @@ EvilCircle.prototype.draw = function() {
 
 EvilCircle.prototype.checkBounds = function() {
   if((this.x + this.size) >= width) {
-    this.x = this.x - 1;
+    this.x -= this.size;
   }
 
   if((this.x - this.size) <= 0) {
-    this.x = this.x + 1;
+    this.x += this.size;
   }
 
   if((this.y + this.size) >= height) {
-    this.y = this.y - 1;
+    this.y -= this.size;
   }
 
   if((this.y - this.size) <= 0) {
-    this.y = this.y + 1;
+    this.y += this.size;
   }  
 };
 
@@ -173,25 +173,26 @@ while(balls.length < 25) {
 }
 
 // define loop that keeps drawing the scene constantly
+let evilCircle = new EvilCircle(300, 300, true);
+evilCircle.setControls();
 
 function loop() {
   ctx.fillStyle = 'rgba(0,0,0,0.25)';
   ctx.fillRect(0,0,width,height);
 
-  let evilCircle = new EvilCircle(300, 300, true);
-  evilCircle.setControls();
+  
 
   for(let i = 0; i < balls.length; i++) {
     if (balls[i].exists) {
       balls[i].draw();
       balls[i].update();
       balls[i].collisionDetect();
-    }
-
-    evilCircle.draw();
-    evilCircle.checkBounds();
-    evilCircle.collisionDetect();
+    }    
   }
+  
+  evilCircle.draw();
+  evilCircle.checkBounds();
+  evilCircle.collisionDetect();
 
   requestAnimationFrame(loop);
 }
